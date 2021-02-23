@@ -1,0 +1,255 @@
+// 数组的解构
+ let [a,b,c]=[1,2,3];
+ console.log(a,c,b);
+
+ let [a,[b,c],d]=[1,[2,3],4]
+ console.log(b)
+
+ let [foo=true]=[];
+ console.log(foo);
+
+ let [a,b="中国"]=["我爱你"]
+ console.log(a+b);
+
+ let [a,b="中国"]=["我爱你",undefined]
+ console.log(a+b);
+
+ let [a,b="中国"]=["我爱你",null]
+ console.log(a+b);
+
+ let {foo,bar}={foo:"我爱你",bar:"中国"};
+ console.log(foo+bar);
+
+ let foo;
+  ({foo}={foo:"中国"});
+ console.log(foo);
+
+ let [a,b,c,d,e]="我爱你中国";
+ console.log(a);
+ console.log(b);
+ console.log(c);
+ console.log(d);
+ console.log(e);
+
+//扩展运算符	
+ function zwf(...arg){
+     console.log(arg[0]);
+     console.log(arg[1]);
+     console.log(arg[2]);
+     console.log(arg[3]);
+ }
+ zwf(1,2,3)
+
+//rest(剩余)运算符
+ function zwf(first,second,...arg){
+      console.log(arg.length);
+      for(let val of arg){
+         console.log(val);
+     }
+}
+ zwf(0,1,2,3,4,5,6,7)
+
+
+// 字符串模板
+
+// 字符串拼接
+ let msg="我爱你";
+ let sp=`<b>其实我</b><br/>${msg}中国`
+ document.write(sp)
+
+ let a=1;
+ let b=3;
+ let sum=`${a+b}`
+ document.write(sum)
+
+//查找字符串中有无指定字符
+ let ji="中国";
+ let sp="我爱你中国";
+ document.write(sp.includes(ji)) 
+
+//查找字符串开头有无指定字符
+ let ji="中国";
+ let sp="我爱你中国";
+ document.write(sp.startsWith(ji)) 
+
+//查找字符串结尾有无指定字符
+ let ji="中国";
+ let sp="我爱你中国";
+ document.write(sp.endsWith(ji)) 
+
+//对字符串进行复制
+ let ji="中国";
+ document.write(ji.repeat(20))
+
+// 数字验证
+
+console.log(Number.isFinite(3.1415))    //判断是否是数字，包括（小数）
+console.log(Number.isNaN(NaN))          //判断是否是NaN
+console.log(Number.isInteger(123.1))    //判断是否是整数
+console.log(Number.parseInt(3.1415926)) //转换为整数
+console.log(Number.parseFloat(3.1415926)) //转换为小数
+
+// 整数的取值范围
+let num=Math.pow(2,53)-1;
+console.log(num);
+
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(Number.MIN_SAFE_INTEGER);
+
+console.log(Number.isSafeInteger(num));
+
+
+//json数组转换普通数组
+ let json={
+    '0':1,
+    '1':2,
+    '2':3,
+    length:3
+ }
+ let arr =Array.from(json);
+ console.log(arr);
+
+//Array.of方法（将后端传经来的数字变成数字）
+//假设后端传来  3，4，5，6
+ let arr=Array.of(3,4,5,6);
+ console.log(arr)
+
+// find()实例方法  查找
+ let arr=[1,2,3,4,5,6,7,8,9,10];
+ console.log(arr.find(function(value,index,arr){
+     return value>5;  //6
+}));
+//也可以用在字符串上
+ let arr=['我爱你','中国'];
+ console.log(arr.find(function(value,index,arr){
+     return index==0      //我爱你
+}));
+
+
+//fill()对数组指定位置指定长度进行替换
+ let arr=['上海','杭州','北京','新疆','福建'];
+ arr.fill('中国',1,3);
+ console.log(arr);
+
+
+// 数组循环
+ let arr=['上海','杭州','北京','新疆','福建'];
+ for(let item of arr){   //循环输出数组内容
+     console.log(item);
+ }
+ for(let item of arr.keys()){    //循环输出数组的下标
+     console.log(item);
+ }
+ for(let item of arr.entries()){     //循环输出数组的内容和下标
+     console.log(item);
+ }
+ for(let [idx,val] of arr.entries()){     //用一个数组格式，把需要的提炼出来
+     console.log(val);
+ }
+
+//entries 手动循环不规则的条目
+ let arr=['上海','杭州','北京','新疆','福建'];
+ let list=arr.entries();
+ console.log(list.next().value); //一行内容
+ console.log('---------------'); //一行分隔符
+ console.log(list.next().value);
+ console.log('---------------');
+ console.log(list.next().value); 
+ console.log('---------------'); 
+
+//箭头函数
+ var add=(a,b)=>{
+     return a+b
+ }
+ console.log(add(1,2));
+
+//对象的函数解构json
+ let json={
+     a:'我爱你',
+     b:'中国'
+ }
+ function fun({a,b}){
+     console.log(a,b);
+ }
+ fun(json)
+
+//  in 的用法
+ let obj={ 
+     a:'我爱你',
+     b:'中国'
+ }
+ console.log('b' in obj);
+
+// in 判断数组位置是否为空
+ let arr=['中国', , ,];
+ console.log(1 in arr);
+
+
+//数组遍历的几个方法
+ let arr=[1,2,3];
+//1.forEach 特点：会自动省略为空的数组元素，相当于直接给我们筛空了
+ arr.forEach((val,index)=>console.log(index,val))
+//2.filter  
+ arr.filter(x=>console.log(x))
+//3.some
+ arr.some(x=>console.log(x))
+//4.map 作用：map在这里起到了一个替换的作用
+ console.log(arr.map(x=>'web'));
+
+//join()方法  作用：在数组元素中间，加了一些间隔。开发中有用处
+ let arr=[1,2,3];
+ console.log(arr.join('-'));
+
+//toString()方法  作用：转换时用 逗号 隔开
+ let arr=[1,2,3];
+ console.log(arr.toString());
+
+//es6赋值
+ let name='zhangsan';
+ let age=22;
+ let obj={name,age};
+ console.log(obj);
+
+//key值的构建   输出skill:"web" 
+ let key='skill';
+ var obj={
+     [key]:'web'
+ }
+ console.log(obj);
+
+//自定义对象方法
+ let obj={
+     add:function(a,b){
+         return a+b
+     }
+ }
+ console.log(obj.add(1,3));
+
+
+//is()  用来判断两个值是否相等
+ let obj1={name:'zhangsan'};
+ let obj2={name:'zhangsan'};
+ console.log(Object.is(obj1.name,obj2.name))
+===和is()的区别           ===值相等  is严格相等
+ console.log(+0===-0);   //true
+ console.log(NaN===NaN); //false
+ console.log(Object.is(+0,-0));  //false
+ console.log(Object.is(NaN,NaN));    //true
+
+
+//assign    合并对象  输出：{a: "zhangsan", b: "lisi", c: "wangwu"}
+ let a={a:'zhangsan'};
+ let b={b:'lisi'};
+ let c={c:'wangwu'};
+ let d=Object.assign(a,b,c);
+ console.log(d);
+
+
+//Set   数据结构（放数组用）set的数组元素不允许重复
+let setArr=new Set(['中国','日本','美国'])
+// console.log(setArr.add('越南'));    //set的增 add添加    
+// console.log(setArr.has('中国'));    //set的查找 has返回true/false
+// setArr.clear();                     //set的删 clear清空数组
+// setArr.delete('日本');              //set的删 delete删除其中的某一项
+//console.log(setArr.size);             //size返回set数组的长度
+console.log(setArr);
