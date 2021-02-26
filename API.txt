@@ -1,4 +1,0 @@
-TOP250：https://www.fastmock.site/mock/d1edabfe7b01993c6e2fbebe84504d44/douban/top250
-正在上映：https://www.fastmock.site/mock/d1edabfe7b01993c6e2fbebe84504d44/douban/in_theaters
-即将上映：https://www.fastmock.site/mock/d1edabfe7b01993c6e2fbebe84504d44/douban/coming_soon
-https://www.showdoc.com.cn/128719739414963?page_id=2513235043485226
